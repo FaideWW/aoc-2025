@@ -111,3 +111,18 @@ func PowInt(x, y int) int {
 
 	return result
 }
+
+func PowInt64(x, y int) int64 {
+	if y == 0 {
+		return 1
+	}
+	if y == 1 {
+		return int64(x)
+	}
+	result := int64(x)
+	for i := 1; i < y; i++ {
+		result *= int64(x)
+	}
+
+	return result
+}
