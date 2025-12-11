@@ -1,8 +1,10 @@
 package io
 
 import (
+	"fmt"
 	"os"
 	"strings"
+	"time"
 )
 
 func check(e error) {
@@ -131,4 +133,11 @@ func PowInt64(x, y int) int64 {
 	}
 
 	return result
+}
+
+func Timer(label string) func() {
+	start := time.Now()
+	return func() {
+		fmt.Printf("%s took %v\n", label, time.Since(start))
+	}
 }

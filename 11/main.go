@@ -49,11 +49,6 @@ func parseGraph(lines []string) Graph {
 	return graph
 }
 
-func countAllPaths(g Graph) int {
-	pathCache := make(map[string]int)
-	return countPaths(g, "you", "out", pathCache)
-}
-
 func countPaths(g Graph, originId string, nodeId string, pathCache map[string]int) int {
 	if nodeId == originId {
 		pathCache[nodeId] = 1
@@ -71,7 +66,14 @@ func countPaths(g Graph, originId string, nodeId string, pathCache map[string]in
 	return pathCache[nodeId]
 }
 
+func countAllPaths(g Graph) int {
+	defer io.Timer("part1")()
+	pathCache := make(map[string]int)
+	return countPaths(g, "you", "out", pathCache)
+}
+
 func countPathsWaypointed(g Graph) int {
+	defer io.Timer("part2")()
 	count1 := 1
 	pathCache := make(map[string]int)
 	count1 *= countPaths(g, "svr", "fft", pathCache)
